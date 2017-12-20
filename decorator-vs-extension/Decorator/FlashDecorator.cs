@@ -13,10 +13,10 @@ namespace Decorator
 
         }
 
-        public override string Capture()
+        public override int Capture()
         {
             Flash();
-            return "<capture data with flash>";
+            return 0;
         }
 
         public void Flash()
@@ -24,14 +24,9 @@ namespace Decorator
             Console.WriteLine("*flash*");
         }
 
-        public new string GetDescription()
+        public override string GetDescription()
         {
-            return base.GetDescription() + ", with flash";
-        }
-
-        public new int GetQuality()
-        {
-            return base.GetQuality() + 10;
+            return _camera.GetDescription() + ", with flash";
         }
     }
 }

@@ -8,8 +8,7 @@ namespace Decorator
 {
     public interface ICamera
     {
-        string Capture();
+        int Capture();
         string GetDescription();
-        int GetQuality();
     }
 }

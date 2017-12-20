@@ -13,10 +13,10 @@ namespace Decorator
 
         }
 
-        public override string Capture()
+        public override int Capture()
         {
             Focus();
-            return "<capture data with focus>";
+            return 0;
         }
 
         public void Focus()
@@ -24,14 +24,9 @@ namespace Decorator
             Console.WriteLine("Focusing the camera lens");
         }
 
-        public new string GetDescription()
+        public override string GetDescription()
         {
-            return base.GetDescription() + ", with good lens";
-        }
-
-        public new int GetQuality()
-        {
-            return base.GetQuality() + 15;
+            return _camera.GetDescription() + ", with good lens";
         }
     }
 }

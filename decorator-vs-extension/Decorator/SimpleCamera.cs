@@ -10,19 +10,14 @@ namespace Decorator
     {
         private int _quality = 50;
 
-        public string Capture()
+        public int Capture()
         {
-            return "<capture data in base64>";
+            return _quality;
         }
 
         public string GetDescription()
         {
             return "Simple camera";
-        }
-
-        public int GetQuality()
-        {
-            return _quality;
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Decorator
             return 0;
         }
 
-        public new string GetDescription()
+        public override string GetDescription()
         {
-            return base.GetDescription() + ", with timer";
+            return _camera.GetDescription() + ", with timer";
         }
     }
 }
