@@ -16,7 +16,7 @@ namespace Decorator
         public override int Capture()
         {
             Flash();
-            return 0;
+            return _camera.Capture() + 10;
         }
 
         public void Flash()

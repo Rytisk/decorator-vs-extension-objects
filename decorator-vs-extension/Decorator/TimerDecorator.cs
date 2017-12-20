@@ -15,7 +15,7 @@ namespace Decorator
 
         public override int Capture()
         {
-            return 0;
+            return _camera.Capture() + 1;
         }
 
         public override string GetDescription()

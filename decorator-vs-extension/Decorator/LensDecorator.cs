@@ -16,7 +16,7 @@ namespace Decorator
         public override int Capture()
         {
             Focus();
-            return 0;
+            return _camera.Capture() + 15;
         }
 
         public void Focus()

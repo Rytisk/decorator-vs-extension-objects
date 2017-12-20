@@ -18,14 +18,37 @@ namespace Decorator
             _camera = camera;
         }
 
-        void AddRole<T>(T role) where T : CameraDecorator
+        public static void RemoveRole<T>(ref ICamera decorator) where T : CameraDecorator
         {
-            throw new NotImplementedException();
+            //Doesnt work with first
+            if(decorator is CameraDecorator)
+            {
+                CameraDecorator camDecorator = decorator as CameraDecorator;
+                while (camDecorator is CameraDecorator)
+                {
+                    if (camDecorator._camera is T)
+                    {
+                        var next = camDecorator._camera as CameraDecorator;
+                        camDecorator._camera = next._camera;
+                    }
+                    camDecorator = camDecorator._camera as CameraDecorator;
+                }
+            }
         }
 
-        T GetRole<T>() where T : CameraDecorator
+        public static T GetRole<T>(ICamera decorator) where T : CameraDecorator
         {
-            throw new NotImplementedException();
+            if(decorator is CameraDecorator)
+            {
+                CameraDecorator camDecorator = decorator as CameraDecorator;
+                while(camDecorator is CameraDecorator)
+                {
+                    if (camDecorator is T)
+                        return camDecorator as T;
+                    camDecorator = camDecorator._camera as CameraDecorator;
+                }
+            }
+            return null;
         }
     }
 }
