@@ -8,23 +8,24 @@ namespace Decorator
 {
     public abstract class CameraDecorator : ICamera
     {
-        private ICamera _camera;
+        protected ICamera _camera;
 
-        public abstract string Capture();
+        public abstract int Capture();
+        public abstract string GetDescription();
 
         public CameraDecorator(ICamera camera)
         {
             _camera = camera;
-        }    
-
-        public string GetDescription()
-        {
-            return _camera.GetDescription();
         }
 
-        public int GetQuality()
+        void AddRole<T>(T role) where T : CameraDecorator
         {
-            return _camera.GetQuality();
+            throw new NotImplementedException();
+        }
+
+        T GetRole<T>() where T : CameraDecorator
+        {
+            throw new NotImplementedException();
         }
     }
 }

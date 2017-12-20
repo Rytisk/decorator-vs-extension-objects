@@ -13,9 +13,9 @@ namespace Decorator
 
         }
 
-        public override string Capture()
+        public override int Capture()
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public new string GetDescription()
