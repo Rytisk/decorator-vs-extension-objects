@@ -10,15 +10,17 @@ namespace Decorator
     {
         static void Main(string[] args)
         {
-            ICamera camera = new FlashDecorator(new TimerDecorator(new SimpleCamera()));
+            ICamera camera = new TimerDecorator(new FlashDecorator(new SimpleCamera()));
 
             Console.WriteLine(camera.Capture());
 
-            var flasher = CameraDecorator.GetRole<FlashDecorator>(camera);
-            flasher.Flash();
-            CameraDecorator.RemoveRole<TimerDecorator>(ref camera);
+            var newCam = new LensDecorator(CameraDecorator.RemoveRole<TimerDecorator>(camera));
 
-            Console.WriteLine(camera.Capture());
+            Console.WriteLine(newCam.Capture());
+
+            var timer = CameraDecorator.GetRole<TimerDecorator>(camera);
+
+            timer.WaitTimer();
         }
     }
 }

@@ -15,13 +15,13 @@ namespace Decorator
 
         public override int Capture()
         {
-            Focus();
-            return _camera.Capture() + 15;
+            return _camera.Capture() + Focus();
         }
 
-        public void Focus()
+        public int Focus()
         {
             Console.WriteLine("Focusing the camera lens");
+            return 15;
         }
 
         public override string GetDescription()

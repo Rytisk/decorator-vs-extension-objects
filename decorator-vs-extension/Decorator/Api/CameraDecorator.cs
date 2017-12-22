@@ -18,22 +18,13 @@ namespace Decorator
             _camera = camera;
         }
 
-        public static void RemoveRole<T>(ref ICamera decorator) where T : CameraDecorator
+        public static ICamera RemoveRole<T>(ICamera decorator) where T : CameraDecorator
         {
-            //Doesnt work with first
             if(decorator is CameraDecorator)
             {
-                CameraDecorator camDecorator = decorator as CameraDecorator;
-                while (camDecorator is CameraDecorator)
-                {
-                    if (camDecorator._camera is T)
-                    {
-                        var next = camDecorator._camera as CameraDecorator;
-                        camDecorator._camera = next._camera;
-                    }
-                    camDecorator = camDecorator._camera as CameraDecorator;
-                }
+                return ((CameraDecorator)decorator).Remove<T>();
             }
+            return decorator;
         }
 
         public static T GetRole<T>(ICamera decorator) where T : CameraDecorator
@@ -49,6 +40,17 @@ namespace Decorator
                 }
             }
             return null;
+        }
+
+        public ICamera Remove<T>() where T : CameraDecorator
+        {
+            if (this is T)
+                return _camera;
+            else
+            {
+                _camera = ((CameraDecorator)_camera).Remove<T>();
+                return this;
+            }
         }
     }
 }

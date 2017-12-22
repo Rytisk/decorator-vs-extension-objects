@@ -15,13 +15,13 @@ namespace Decorator
 
         public override int Capture()
         {
-            Flash();
-            return _camera.Capture() + 10;
+            return _camera.Capture() + Flash();
         }
 
-        public void Flash()
+        public int Flash()
         {
             Console.WriteLine("*flash*");
+            return 10;
         }
 
         public override string GetDescription()
